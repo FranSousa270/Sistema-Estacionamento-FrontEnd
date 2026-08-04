@@ -11,7 +11,7 @@ export async function getSetorById(id: number) {
   return response.data;
 }
 
-export async function createSetor(dados: Omit<Setor, 'id'>) {
+export async function createSetor(dados: Pick<Setor, 'nome'>) {
   const response = await api.post<Setor>('/setores', dados)
   return response.data
 }
