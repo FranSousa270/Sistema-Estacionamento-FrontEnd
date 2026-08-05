@@ -35,19 +35,19 @@
     font-size: 16px;
   }
 
-  --background: oklch(1 0 0);
+  --background: oklch(98.5% 0.006 280);
 
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(16% 0.005 0);
 
-  --card: oklch(1 0 0);
+  --card: oklch(0.99 0.002 0);
 
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(%16 0.00 0);
 
-  --popover: oklch(1 0 0);
+  --popover: oklch(99.5% 0.005 0);
 
   --popover-foreground: oklch(0.145 0 0);
 
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(15% 0.02 60);
 
   --primary-foreground: oklch(0.985 0 0);
 
@@ -79,9 +79,9 @@
 
   --radius: 0.625rem;
 
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(99% 0.005 0);
 
-  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(%17 0.02 240);
 
   --sidebar-primary: oklch(0.205 0 0);
 

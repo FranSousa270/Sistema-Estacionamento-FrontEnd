@@ -1,59 +1,94 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createSetor, getSetores } from "@/services/setoresServices";
-import type { Setor } from "@/types/setor";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import type { SetorFormData } from "@/schemas/setorSchema";
-import { setorSchema } from "@/schemas/setorSchema";
+import {
+  ativarSetor,
+  desativarSetor,
+  getSetores,
+} from "@/services/setoresServices";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Field, FieldLabel, FieldError } from "@/components/ui/field";
+import { Link } from "react-router-dom";
 
 function SetoresPage() {
-  const queryClient = useQueryClient()
-
-  const mutation = useMutation({
-    mutationFn: createSetor,
+  const queryClient = useQueryClient();
+  const ativarMutation = useMutation({
+    mutationFn: ativarSetor,
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['setores']})
-      form.reset()
-    },
-  })
-
-  const form = useForm<SetorFormData>({
-    resolver: zodResolver(setorSchema),
-    defaultValues: {
-      nome: "",
+      queryClient.invalidateQueries({ queryKey: ["setores"] });
+      toast.success("Setor ativado!");
     },
   });
-  function onSubmit(dados: SetorFormData) {
-  mutation.mutate(dados)
-}
+
+  const desativarMutation = useMutation({
+    mutationFn: desativarSetor,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["setores"] });
+      toast.success("Setor desativado!");
+    },
+  });
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["setores"],
+    queryFn: getSetores,
+  });
+
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
+  if (error) {
+    return <p>Erro ao carregar setores</p>;
+  }
   return (
     <>
-    <div className="max-w-md mx-auto p-4">
-
-      <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
-        <Controller
-          name="nome"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Nome do Setor</FieldLabel>
-              <Input
-                {...field}
-                id={field.name}
-                aria-invalid={fieldState.invalid}
-                placeholder="Ex Setor A"
-                autoComplete="off"
-                className="border-black focus-visible:ring-slate-900"
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
+      <h1 className="text-3xl text-center pb-8 pr-20">Setores</h1>
+      <div className="max-w-3xl mx-auto rounded shadow-2xs">
+        <Table className="">
+          <TableHeader>
+            <TableRow className="hover:bg-slate-200">
+              <TableHead className="text-lef">Nome</TableHead>
+              <TableHead className="text-center">Status</TableHead>
+              <TableHead className="text-right">Ações</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data?.map((setor) => (
+              <TableRow key={setor.id} className="hover:bg-slate-200">
+                <TableCell className="text-left ">{setor.nome}</TableCell>
+                <TableCell className="text-center ">
+                  {setor.ativo ? "Ativo" : "Inativo"}
+                </TableCell>
+                <TableCell className="text-right">
+                  {setor.ativo ? (
+                    <Button
+                      className="bg-red-600 rounded hover:bg-red-700 cursor-pointer"
+                      onClick={() => desativarMutation.mutate(setor.id)}
+                    >
+                      Desativar
+                    </Button>
+                  ) : (
+                    <Button
+                      className="bg-green-600 p-4 rounded hover:bg-green-700 cursor-pointer"
+                      onClick={() => ativarMutation.mutate(setor.id)}
+                    >
+                      Ativar
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <Button
+          className="mt-6 rounded"
+          render={<Link to="/setores/cadastro">Cadastrar Setor</Link>}
         />
-        <Button type="submit">Cadastrar Setor</Button>
-      </form>
       </div>
     </>
   );
