@@ -12,7 +12,7 @@ export async function getVagaById(id: number) {
   return response.data;
 }
 
-export async function createVaga(dados: Omit<Vaga, 'id'>) {
+export async function createVaga(dados: Omit<Vaga, 'id' | 'ativa'>) {
     const response = await api.post<Vaga>(`/vagas`, dados)
     return response.data
 }

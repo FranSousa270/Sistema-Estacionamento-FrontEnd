@@ -7,6 +7,7 @@ import ProprietariosPage from "./pages/ProprietariosPage"
 import SetoresForm from "./pages/SetoresForm"
 import Layout from "./components/Layout"
 import { Toaster } from "./components/ui/sonner"
+import VagasForm from "./pages/VagasForm"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/proprietarios" element={<ProprietariosPage />} />
       <Route path="/permanencias" element={<PermanenciasPage />} />
       <Route path="/vagas" element={<VagasPage />} />
+      <Route path="/vagas/cadastro" element={<VagasForm />} />
       </Route>
     </Routes>
     </>

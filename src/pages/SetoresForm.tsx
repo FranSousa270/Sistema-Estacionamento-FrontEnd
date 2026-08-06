@@ -67,7 +67,7 @@ function SetoresForm() {
                       aria-invalid={fieldState.invalid}
                       placeholder="Ex Setor A"
                       autoComplete="off"
-                      className="border-black focus-visible:ring-slate-600"
+                      className="border-black rounded focus-visible:ring-slate-600"
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -84,7 +84,7 @@ function SetoresForm() {
         <div className="flex justify-end mt-6">
           <Button
             variant="outline"
-            className="p-3"
+            className="p-3 rounded"
             render={<Link to="/setores">Voltar</Link>}
           />
         </div>

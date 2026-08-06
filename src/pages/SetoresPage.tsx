@@ -48,7 +48,8 @@ function SetoresPage() {
   return (
     <>
       <h1 className="text-3xl text-center pb-8 pr-20">Setores</h1>
-      <div className="max-w-3xl mx-auto rounded shadow-2xs">
+      <div className="bg-slate-100 pt-6 rounded shadow-[0_-1px_6px_-1px_rgba(0,0,0,0.1),0_1px_6px_-1px_rgba(0,0,0,0.1)] pb-6">
+      <div className="max-w-3xl mx-auto rounded">
         <Table className="">
           <TableHeader>
             <TableRow className="hover:bg-slate-200">
@@ -89,6 +90,7 @@ function SetoresPage() {
           className="mt-6 rounded"
           render={<Link to="/setores/cadastro">Cadastrar Setor</Link>}
         />
+      </div>
       </div>
     </>
   );

@@ -271,7 +271,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon className="size-7 text-zinc-900" />
+      <PanelLeftIcon className="size-7 text-zinc-900 cursor-pointer" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
