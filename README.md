@@ -1,4 +1,4 @@
-# 🅿️ Sistema de Estacionamento — Front End
+# Sistema de Estacionamento — Front End
 
 Interface web para o [sistema de gerenciamento de estacionamento](#) (back end em Node/Express/Prisma), permitindo cadastrar e controlar setores, vagas, proprietários, veículos e o fluxo de entrada/saída (permanências) de veículos.
 
@@ -13,7 +13,7 @@ Interface web para o [sistema de gerenciamento de estacionamento](#) (back end e
 ![Formulário de cadastro](./docs/screenshot-form.png)
 -->
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - **Setores**: listagem em tabela, cadastro em página própria, ativação/desativação
 - **Vagas**: listagem (com nome do setor e tipo), cadastro vinculado a um setor (Select dinâmico), ativação/desativação
@@ -21,7 +21,7 @@ Interface web para o [sistema de gerenciamento de estacionamento](#) (back end e
 - **Veículos**: cadastrados dentro da tela de detalhes do proprietário — sem necessidade de selecionar o proprietário manualmente, já que o contexto vem da URL
 - **Feedback de ações**: toasts de sucesso/erro em todas as operações, exibindo a mensagem de erro real vinda da API quando disponível (ex: nome de setor duplicado)
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - **React** + **TypeScript**
 - **React Router DOM** — rotas e navegação (incluindo rotas aninhadas com layout compartilhado)
@@ -32,7 +32,7 @@ Interface web para o [sistema de gerenciamento de estacionamento](#) (back end e
 - **Lucide React** — ícones
 - **react-number-format** — máscaras de CPF e telefone
 
-## 🗂️ Estrutura do projeto
+## Estrutura do projeto
 
 ```
 src/
@@ -43,18 +43,18 @@ src/
 └── routes/      # Configuração de rotas
 ```
 
-## 🔌 Integração com o back end
+## Integração com o back end
 
 - Camada de `services` 100% tipada com TypeScript, usando `Omit`/`Pick` dos tipos das entidades para modelar exatamente o payload esperado por cada rota
 - Ativação/desativação de Setor e Vaga via `PATCH` sem corpo (a URL define o estado)
 - Exclusão de Proprietário e Veículo via `DELETE` real (com aviso de cascata na interface)
 - Tratamento de erros da API exibindo a mensagem retornada pelo back (`error.response.data.message`), com fallback genérico
 
-## 🚧 Status do projeto
+## Status do projeto
 
 Em desenvolvimento. Autenticação/login ainda não implementada (aguardando o back end). Próximas etapas planejadas: fluxo completo de Permanência (entrada/saída), visualização em planta 2D/3D dos setores e dashboard de ocupação.
 
-## 🔧 Rodando localmente
+## Rodando localmente
 
 ```bash
 git clone <url-do-repositório>
@@ -67,6 +67,6 @@ npm run dev
 
 A aplicação sobe por padrão em `http://localhost:5173`.
 
-## 📄 Licença
+## Licença
 
 Este projeto está sob a licença MIT.
